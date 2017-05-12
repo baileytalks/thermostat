@@ -1,0 +1,77 @@
+body {
+  text-align: center;
+}
+
+.big-border {
+  border-color:#4a5359;
+  border-style: solid;
+  border-width: 1px;
+  margin:  0 auto;
+  padding: 20px 20px 20px 20px;
+  min-width: 220px;
+  max-width: 220px;
+}
+div.full-display {
+  border-color:#4a5359;
+  border-style: solid;
+  border-width: 3px;
+  background: #4dbc3e;
+  margin:  0 auto;
+  padding: 20px 20px 20px 20px;
+  font-family: 'LCD14';
+  font-size: 80%;
+  color: #ffffff;
+  min-width: 164px;
+  max-width: 164px;
+}
+
+div.brand {
+  font: italic 20px helvetica;
+  padding: 0px 0px 20px 0px;
+}
+
+div.temperature-display {
+  font-size: 400%;
+  padding: 0px 0px 0px 20px;
+}
+
+.control-buttons {
+  min-width: 39px;
+  max-width: 39px;
+  min-height: 40px;
+  max-height: 40px;
+}
+.control-button-large {
+  min-width: 124px;
+  max-width: 124px;
+  min-height: 40px;
+  max-height: 40px;
+}
+
+.control-button-wide {
+  min-width: 210px;
+  max-width: 210px;
+  min-height: 40px;
+  max-height: 40px;
+}
+
+input {
+  border-color:#4a5359;
+  border-width:3px;
+  margin: 0 auto;
+  font-size: 100%;
+}
+
+.button-div {
+  padding: 14px 0px 0px 0px;
+}
+
+.energy-display {
+  min-height: 20px;
+  max-height: 20px;
+}
+
+.usage-display {
+  min-height: 35px;
+  max-height: 35px;
+}

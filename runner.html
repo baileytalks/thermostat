@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="./public/style.css">
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/lcd" type="text/css"/>
+</head>
+
+<body>
+  <div class="big-border">
+  <div class="brand">
+  thermobot detects
+    you are in london (<span id='weather'>Test</span>&deg)
+  </div>
+
+  <div class='full-display'>
+    <div class="energy-display">
+      <span id='error-message'>  </span>
+    </div>
+
+    <div class="temperature-display">
+      <span id='temp'>00</span>&deg
+    </div>
+
+    <div class="usage-display">
+      <span id='usage'>MEDIUM-USAGE</span><br>
+      POWER-SAVE: <span id='powersavestatus'>ON</span>
+    </div>
+  </div>
+
+<div class='button-div'>
+  <form>
+    <input class='control-buttons' type='button' id='down' value='-'>
+    <input class='control-button-large' type='button' id='reset' value='RESET'>
+    <input class='control-buttons' type='button' id='up' value='+'>
+  </form>
+</div>
+
+<div class='button-div'>
+  <form>
+    <input class='control-button-wide' type='button' id='power-save' value='POWER-SAVE'>
+  </form>
+</div>
+
+</div>
+<script src='https://code.jquery.com/jquery-3.2.1.js'></script>
+<script src="src/Thermostat.js"></script>
+<script src="src/PowerSave.js"></script>
+<script src="src/EnergyUsage.js"></script>
+
+<script>
+  var thermostat = new Thermostat
+
+  function Update() {
+    $('#temp').html(thermostat.temperature);
+    $('#usage').html(thermostat.checkUsage());
+
+    if ( thermostat.checkUsage() == 'HIGH-USAGE') {
+      $('.full-display').css('background', '#af0c0c')
+    }
+    else if ( thermostat.checkUsage() == 'MEDIUM-USAGE') {
+      $('.full-display').css('background', '#000')
+    }
+    else {
+      $('.full-display').css('background', '#4dbc3e')
+    }
+
+    if (thermostat._isAtMaximum()) {
+      $('#error-message').html('AT MAX TEMP')
+    }
+    else if (thermostat._isAtMinimum()) {
+      $('#error-message').html('AT MIN TEMP')
+    }
+    else {
+    $('#error-message').html('')
+    }
+  }
+
+  Update();
+
+  $('#up').click(function() {
+    thermostat.temperatureUp();
+    Update();
+  });
+
+  $('#down').click(function() {
+    thermostat.temperatureDown();
+    Update();
+  });
+
+  $('#reset').click(function() {
+    thermostat.resetTemperature();
+    Update();
+  });
+
+  $('#power-save').click(function() {
+    if ( thermostat.powerSave.isOn == true ) {
+      $('#powersavestatus').html('OFF')
+      thermostat.powerSave.turnOff()
+    }
+    else {
+      thermostat.powerSave.turnOn()
+      $('#powersavestatus').html('ON')
+      if (thermostat.temperature >= 26 ) { thermostat.temperature = 25 }
+    }
+    Update();
+  });
+
+  $.get('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=f8b3876605ed0efce7f9c170fdc19412', function(city_id) {
+    $("#weather").html(city_id.main.temp - 273.15);
+  });
+
+</script>
+
+</body>
+
+</html>
