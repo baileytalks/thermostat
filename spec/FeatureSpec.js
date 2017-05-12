@@ -1,6 +1,8 @@
+
+
 describe('Feature Test', function() {
   var thermostat = new Thermostat();
-
+    
   it('starts with medium-usage', function() {
     expect(thermostat.checkUsage()).toEqual('MEDIUM-USAGE');
   })
