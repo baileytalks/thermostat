@@ -2,7 +2,7 @@ describe('Feature Test', function() {
   var thermostat = new Thermostat();
 
   it('starts with medium-usage', function() {
-    expect(thermostat.checkUsage()).toEqual('medium-usage');
+    expect(thermostat.checkUsage()).toEqual('MEDIUM-USAGE');
   })
 
   it('cannot turn the temperature past 25', function() {
@@ -23,6 +23,6 @@ describe('Feature Test', function() {
   })
 
   it('has high-usage', function() {
-    expect(thermostat.checkUsage()).toEqual('high-usage');
+    expect(thermostat.checkUsage()).toEqual('HIGH-USAGE');
   })
 })
